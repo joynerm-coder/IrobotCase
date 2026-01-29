@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iRobot Warranty Case Documentation | A Consumer Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
+            --color-border-light: #f3f4f6;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-text-muted: #9ca3af;
+            --color-accent: #3b5998;
+            --color-accent-light: #e8ecf4;
+            --color-accent-dark: #2d4373;
+            --color-warning: #d97706;
+            --color-warning-bg: #fef3c7;
+            --color-error: #dc2626;
+            --color-error-bg: #fef2f2;
+            --color-success: #059669;
+            --color-success-bg: #d1fae5;
+            --color-evidence-pending: #f9fafb;
+            --color-fact: #0369a1;
+            --color-fact-bg: #e0f2fe;
+            --color-statement: #7c3aed;
+            --color-statement-bg: #ede9fe;
+            --color-question: #ea580c;
+            --color-question-bg: #fff7ed;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.7; font-size: 15px; }
+        
+        /* Navigation */
+        .nav { position: sticky; top: 0; z-index: 100; background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding: 0 2rem; }
+        .nav-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-brand { font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
+        .nav-links { display: flex; gap: 0.5rem; }
+        .nav-link { padding: 0.5rem 1rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.15s ease; }
+        .nav-link:hover, .nav-link.active { background: var(--color-accent-light); color: var(--color-accent); }
+        
+        /* Header */
+        .header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding: 4rem 2rem; }
+        .header-inner { max-width: 900px; margin: 0 auto; }
+        .header-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 1rem; }
+        .header h1 { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 600; line-height: 1.2; margin-bottom: 1.5rem; }
+        .header-meta { display: flex; flex-wrap: wrap; gap: 2rem; font-size: 0.875rem; color: var(--color-text-secondary); }
+        .header-meta-item { display: flex; align-items: center; gap: 0.5rem; }
+        .header-meta-label { font-weight: 500; }
+        
+        /* Main Layout */
+        .main { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
+        .timeline-column { min-width: 0; }
+        
+        /* Sections */
+        .section { margin-bottom: 3rem; }
+        .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--color-border); }
+        .section-number { width: 32px; height: 32px; background: var(--color-text); color: white; font-size: 0.875rem; font-weight: 600; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .section-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; }
+        
+        /* Timeline */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--color-border); }
+        .timeline-item { position: relative; margin-bottom: 1.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -25px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--color-surface); border: 2px solid var(--color-border); }
+        .timeline-item.critical::before { background: var(--color-error); border-color: var(--color-error); }
+        .timeline-item.warning::before { background: var(--color-warning); border-color: var(--color-warning); }
+        .timeline-item.success::before { background: var(--color-success); border-color: var(--color-success); }
+        
+        /* Timeline Cards */
+        .timeline-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; transition: box-shadow 0.15s ease; }
+        .timeline-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .timeline-card-header { padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+        .timeline-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 0.25rem; }
+        .timeline-headline { font-weight: 500; font-size: 0.95rem; line-height: 1.4; }
+        .timeline-expand { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); transition: transform 0.2s ease; }
+        .timeline-card.expanded .timeline-expand { transform: rotate(180deg); }
+        .timeline-card-body { display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--color-border-light); }
+        .timeline-card.expanded .timeline-card-body { display: block; }
+        .timeline-section { margin-top: 1rem; }
+        .timeline-section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: 0.5rem; }
+        .timeline-section-content { font-size: 0.9rem; color: var(--color-text-secondary); }
+        .timeline-section-content ul { margin-left: 1.25rem; margin-top: 0.5rem; }
+        .timeline-section-content li { margin-bottom: 0.35rem; }
+        
+        /* Claim Labels */
+        .claim-label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; border-radius: 3px; margin-bottom: 0.5rem; }
+        .claim-label-fact { background: var(--color-fact-bg); color: var(--color-fact); }
+        .claim-label-statement { background: var(--color-statement-bg); color: var(--color-statement); }
+        .claim-label-question { background: var(--color-question-bg); color: var(--color-question); }
+        
+        /* Evidence Button */
+        .evidence-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.875rem; background: var(--color-accent-light); color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: 5px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.15s ease; margin-top: 0.75rem; }
+        .evidence-btn:hover { background: var(--color-accent); color: white; }
+        .evidence-btn svg { width: 14px; height: 14px; }
+        
+        /* Evidence Pending */
+        .evidence-pending { background: var(--color-evidence-pending); border: 1px dashed var(--color-border); border-radius: 6px; padding: 1rem; margin-top: 0.75rem; }
+        .evidence-pending-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: 0.5rem; }
+        .evidence-pending-text { font-size: 0.85rem; color: var(--color-text-secondary); }
+        
+        /* Context Panel */
+        .context-panel { position: sticky; top: 88px; height: fit-content; max-height: calc(100vh - 112px); overflow-y: auto; }
+        .context-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 1.5rem; }
+        .context-card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border-light); font-weight: 600; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; }
+        .context-card-body { padding: 1.25rem; }
+        .key-fact { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--color-border-light); font-size: 0.875rem; }
+        .key-fact:last-child { border-bottom: none; }
+        .key-fact-label { color: var(--color-text-secondary); }
+        .key-fact-value { font-weight: 500; text-align: right; }
+        .key-fact-value.highlight { color: var(--color-error); }
+        
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .stat-box { background: var(--color-bg); padding: 1rem; border-radius: 6px; text-align: center; }
+        .stat-number { font-family: var(--font-mono); font-size: 1.75rem; font-weight: 600; }
+        .stat-number.error { color: var(--color-error); }
+        .stat-label { font-size: 0.75rem; color: var(--color-text-secondary); margin-top: 0.25rem; }
+        
+        /* Tags */
+        .tag { display: inline-block; font-size: 0.7rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 4px; margin-right: 0.35rem; margin-bottom: 0.35rem; }
+        .tag-warning { background: var(--color-warning-bg); color: var(--color-warning); }
+        .tag-error { background: var(--color-error-bg); color: var(--color-error); }
+        .tag-success { background: var(--color-success-bg); color: var(--color-success); }
+        .tag-neutral { background: var(--color-border-light); color: var(--color-text-secondary); }
+        
+        /* Info boxes */
+        .info-box { padding: 1rem; border-radius: 6px; font-size: 0.875rem; margin-top: 1rem; }
+        .info-box-warning { background: var(--color-warning-bg); border-left: 3px solid var(--color-warning); }
+        .info-box-neutral { background: var(--color-bg); border-left: 3px solid var(--color-border); }
+        .info-box-accent { background: var(--color-accent-light); border-left: 3px solid var(--color-accent); }
+        
+        /* Tooltips */
+        .tooltip-term { border-bottom: 1px dotted var(--color-text-muted); cursor: help; position: relative; }
+        .tooltip-term:hover::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--color-text); color: white; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.75rem; line-height: 1.5; white-space: normal; width: 280px; z-index: 50; margin-bottom: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        
+        /* Evidence Panel Overlay */
+        .evidence-panel-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 200; opacity: 0; visibility: hidden; transition: all 0.25s ease; }
+        .evidence-panel-overlay.active { opacity: 1; visibility: visible; }
+        
+        /* Evidence Panel */
+        .evidence-panel { position: fixed; top: 0; right: 0; width: 520px; max-width: 90vw; height: 100vh; background: var(--color-surface); z-index: 201; transform: translateX(100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: -4px 0 24px rgba(0,0,0,0.15); }
+        .evidence-panel.active { transform: translateX(0); }
+        .evidence-panel-header { padding: 1.5rem; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: flex-start; }
+        .evidence-panel-title { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .evidence-panel-subtitle { font-size: 0.85rem; color: var(--color-text-secondary); }
+        .evidence-panel-close { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--color-bg); border: none; border-radius: 6px; cursor: pointer; color: var(--color-text-secondary); }
+        .evidence-panel-close:hover { background: var(--color-border); color: var(--color-text); }
+        .evidence-panel-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+        .evidence-section { margin-bottom: 2rem; }
+        .evidence-section-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border-light); }
+        .evidence-summary { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; }
+        .evidence-extract { background: var(--color-bg); border-left: 3px solid var(--color-accent); padding: 1rem; margin-top: 0.75rem; border-radius: 0 6px 6px 0; }
+        .evidence-extract-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-accent); margin-bottom: 0.5rem; }
+        .evidence-extract-text { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-text); line-height: 1.6; white-space: pre-wrap; }
+        .evidence-source-link { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--color-accent-light); border: 1px solid var(--color-accent); border-radius: 6px; text-decoration: none; color: var(--color-accent); transition: all 0.15s ease; margin-top: 0.75rem; }
+        .evidence-source-link:hover { background: var(--color-accent); color: white; }
+        .evidence-source-link svg { width: 20px; height: 20px; }
+        .evidence-source-link-title { font-weight: 600; font-size: 0.9rem; }
+        .evidence-source-link-desc { font-size: 0.75rem; opacity: 0.8; margin-top: 0.15rem; }
+        .evidence-preparation { background: var(--color-evidence-pending); border: 1px dashed var(--color-border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+        .evidence-preparation-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .evidence-preparation-text { font-size: 0.85rem; color: var(--color-text-secondary); }
+        
+        /* Policy Context Cards */
+        .policy-context-card { background: linear-gradient(135deg, var(--color-accent-light) 0%, #f0f4f8 100%); border: 1px solid var(--color-accent); border-radius: 8px; margin-top: 1.5rem; }
+        .policy-context-header { padding: 1rem 1.25rem; border-bottom: 1px solid rgba(59, 89, 152, 0.2); display: flex; align-items: center; gap: 0.75rem; }
+        .policy-context-icon { width: 20px; height: 20px; color: var(--color-accent); }
+        .policy-context-title { font-weight: 600; font-size: 0.9rem; color: var(--color-accent-dark); }
+        .policy-context-body { padding: 1.25rem; }
+        .policy-context-body p { font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+        .policy-context-body ul { font-size: 0.85rem; color: var(--color-text-secondary); margin-left: 1.25rem; margin-bottom: 0.75rem; }
+        .policy-context-body li { margin-bottom: 0.35rem; }
+        .policy-disclaimer { font-size: 0.75rem; font-style: italic; color: var(--color-text-muted); padding-top: 0.75rem; border-top: 1px dashed rgba(59, 89, 152, 0.3); margin-top: 0.75rem; }
+        
+        /* Non-Claims Box */
+        .non-claims-box { background: #fefce8; border: 2px solid #facc15; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+        .non-claims-box-title { font-weight: 600; font-size: 1rem; color: #854d0e; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .non-claims-box-content { font-size: 0.9rem; color: #713f12; line-height: 1.7; }
+        
+        /* Pages */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .about-content { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .about-content h2 { font-family: var(--font-serif); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .about-content h2:first-child { margin-top: 0; }
+        .about-content p { margin-bottom: 1rem; color: var(--color-text-secondary); }
+        .about-content ul { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--color-text-secondary); }
+        .about-content li { margin-bottom: 0.5rem; }
+        
+        /* Footer */
+        .footer { background: var(--color-surface); border-top: 1px solid var(--color-border); padding: 2rem; margin-top: 4rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-disclaimer { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.8rem; color: #92400e; line-height: 1.6; }
+        .footer-text { font-size: 0.8rem; color: var(--color-text-muted); text-align: center; }
+        .footer-version { font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-text-muted); text-align: center; margin-top: 0.5rem; }
+        
+        @media (max-width: 1024px) { .main { grid-template-columns: 1fr; } .context-panel { position: static; max-height: none; } }
+        @media (max-width: 640px) { .nav-links { display: none; } .header h1 { font-size: 1.75rem; } .main { padding: 1rem; } .evidence-panel { width: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">iRobot Case Documentation</a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="timeline">Timeline</a>
+                <a href="#" class="nav-link" data-page="documents">Documents</a>
+                <a href="#" class="nav-link" data-page="data-context">Data & Privacy</a>
+                <a href="#" class="nav-link" data-page="regulatory">Regulatory Context</a>
+                <a href="#" class="nav-link" data-page="about">About / Methodology</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-label">Consumer Case Documentation</div>
+            <h1>iRobot Warranty Administration: A 14-Month Case Study</h1>
+            <p style="font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; max-width: 700px;">~14 replacement units. 3 product models. Firmware that broke working devices. Records that couldn't get the customer's name right.</p>
+            <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; max-width: 600px;">
+                <div style="font-weight: 600; color: #92400e; margin-bottom: 0.25rem;">⏳ Status: Pre-Publication Review</div>
+                <div style="font-size: 0.875rem; color: #a16207;">This documentation is being shared with iRobot Legal for review and comment prior to public release. Contact: <a href="mailto:markjoynerirobot@gmail.com" style="color: #92400e;">markjoynerirobot@gmail.com</a></div>
+            </div>
+            <div class="header-meta">
+                <div class="header-meta-item"><span class="header-meta-label">Case Period:</span><span>December 2023 – January 2026</span></div>
+                <div class="header-meta-item"><span class="header-meta-label">Status:</span><span>Pending Resolution</span></div>
+                <div class="header-meta-item"><span class="header-meta-label">Last Updated:</span><span>January 28, 2026</span></div>
+                <div class="header-meta-item"><span class="header-meta-label">Version:</span><span>2.0</span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Evidence Panel Overlay -->
+    <div class="evidence-panel-overlay" id="evidencePanelOverlay"></div>
+
+    <!-- Evidence Panel -->
+    <div class="evidence-panel" id="evidencePanel">
+        <div class="evidence-panel-header">
+            <div>
+                <div class="evidence-panel-title" id="evidencePanelTitle">Supporting Documentation</div>
+                <div class="evidence-panel-subtitle" id="evidencePanelSubtitle">Related to timeline entry</div>
+            </div>
+            <button class="evidence-panel-close" id="evidencePanelClose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="evidence-panel-body" id="evidencePanelBody"></div>
+    </div>
+
+    <!-- Timeline Page -->
+    <div class="page-section active" id="page-timeline">
+        <main class="main">
+            <div class="timeline-column">
+                
+                <!-- Section 1: Purchase -->
+                <div class="section" id="section-1">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2 class="section-title">Product Purchase & Initial Expectations</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item success">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">December 20, 2023</div>
+                                        <div class="timeline-headline">Roomba Combo j9+ purchased from Best Buy as gift</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Consumer purchased iRobot Roomba Combo j9+ from Best Buy for $999. Product was intended as a gift. Purchase included advertised WiFi connectivity, mopping functionality, and standard manufacturer warranty coverage.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">Establishes the original purchase date and product specifications. This date becomes relevant when iRobot later claimed the purchase occurred in "April 2024."</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="purchase"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 20, 2024</div>
+                                        <div class="timeline-headline">Extended warranty purchased for additional coverage</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Consumer purchased iRobot extended warranty for $249.99 (Transaction ID: 320243350070422825). Total investment: $1,248.99.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">iRobot later recorded this warranty purchase date as "October 17, 2025" — which was actually the date the consumer had to remind support the warranty existed after it had disappeared from records.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="warranty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Early Failures -->
+                <div class="section" id="section-2">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2 class="section-title">Early Failures & Replacements</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item warning">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">2024</div>
+                                        <div class="timeline-headline">Approximately 10 Roomba j9+ units fail with mopping streaks</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Multiple Roomba Combo j9+ replacement units were issued. Each exhibited the same mopping streak defect. Exact count estimated at approximately 10 units.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">Pattern of identical failures across multiple hardware units suggests a systemic product defect rather than isolated manufacturing variance.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="j9-replacements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item warning">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">2024–2025</div>
+                                        <div class="timeline-headline">Model upgraded to Combo 10 Max; approximately 4 units fail</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">After repeated j9+ failures, consumer was upgraded to Roomba Combo 10 Max. This model exhibited the same mopping streak issues plus additional hardware failures including charging contact problems.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="10max-replacements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Firmware Issues -->
+                <div class="section" id="section-3">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2 class="section-title">Firmware & Software Issues</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item critical">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">August 19, 2025</div>
+                                        <div class="timeline-headline">Firmware version 8.4.1 released by iRobot</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">iRobot released <span class="tooltip-term" data-tooltip="Software embedded in the robot's hardware that controls its operation. Updates are delivered over-the-air (OTA).">firmware</span> version 8.4.1 for the Roomba 505 product line. Typical staged deployment: 10-14 days.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">Subsequent firmware version 8.4.2 patch notes state: "Fixed a bug where Wi-Fi issues caused some robots to get stuck in software update cycles." This acknowledges that changes were made to how the robot interacts with WiFi networks — implying network connectivity issues existed in the 8.4.x firmware branch that required modification.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="firmware-841"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item critical">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">September 1, 2025</div>
+                                        <div class="timeline-headline">WiFi connectivity failures begin; 13 days post-firmware release</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Consumer's Roomba 505 began experiencing persistent WiFi connectivity failures. Robot would maintain physical WiFi connection (visible on router) but fail to connect to iRobot's <span class="tooltip-term" data-tooltip="Remote servers that store device data, enable app connectivity, and push firmware updates.">cloud services</span>.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">
+                                            <ul>
+                                                <li>13-day interval falls within typical firmware rollout window</li>
+                                                <li>Robot had operated flawlessly for 4+ months on same network</li>
+                                                <li>7 other robots (including 3 other iRobot devices) continued working on same network</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="connectivity-failure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item critical">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 19, 2025</div>
+                                        <div class="timeline-headline">Hardware replacement issued; exhibits identical failure pattern</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">iRobot issued a complete hardware replacement unit. The replacement exhibited the identical connectivity failure pattern as the original unit.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">Two separate hardware units exhibiting identical software-related failures provides strong evidence that the issue is firmware-based rather than hardware defect or environmental.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="replacement-failure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Policy Context -->
+                    <div class="policy-context-card">
+                        <div class="policy-context-header">
+                            <svg class="policy-context-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                            <span class="policy-context-title">Context: Who Controls Your Robot?</span>
+                        </div>
+                        <div class="policy-context-body">
+                            <p>This case illustrates a fundamental issue with modern "smart" devices: <strong>the company retains control over products consumers have purchased.</strong></p>
+                            <ul>
+                                <li>Firmware updates are pushed automatically — consumers cannot opt out</li>
+                                <li>A working device can be rendered non-functional by a software update the consumer never requested</li>
+                                <li>When failures occur, the company's first response was to blame the customer's home network — not to check their own systems</li>
+                                <li>The consumer has no ability to roll back to working firmware</li>
+                            </ul>
+                            <p>When this level of control transfers to foreign ownership, it transfers the ability to push software changes to devices inside millions of American homes.</p>
+                            <p class="policy-disclaimer">This is not speculation — it is a description of how these devices function, as demonstrated by this case.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Warranty Administration -->
+                <div class="section" id="section-4">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2 class="section-title">Warranty Administration Breakdown</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item warning">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 25, 2025</div>
+                                        <div class="timeline-headline">Support agent attributes failure to "Wi-Fi environment" without diagnostics</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Support agent recommended consumer: "contact internet provider, install mesh system, upgrade router" — without first checking diagnostic database.</div>
+                                    </div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Why It Matters</div>
+                                        <div class="timeline-section-content">Consumer's existing network infrastructure ($2,700 enterprise Orbi mesh system) exceeded all published requirements. Seven other robots operated flawlessly on the same network.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="network-blame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item critical">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 26, 2025</div>
+                                        <div class="timeline-headline">Same agent discovers "account-associated error" in iRobot's database</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">The same support agent who previously blamed the consumer's network checked iRobot's database and discovered an "account-associated error" on iRobot's end.</div>
+                                    </div>
+                                    <div class="info-box info-box-neutral">
+                                        <div class="claim-label claim-label-statement">● Company Statement</div>
+                                        iRobot acknowledged in December 11, 2025 BBB response: "Diagnostics should have preceded networking recommendations, and we acknowledge this service gap."
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="account-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Data Management -->
+                <div class="section" id="section-5">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h2 class="section-title">Data Management & Record Integrity Failures</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item warning">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">December 5, 2025</div>
+                                        <div class="timeline-headline">iRobot states purchase date was "April 2024" — actual date December 2023</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">In BBB response, iRobot stated: "Purchase Date: April 2024 (not late 2023 as stated)." Consumer provided Best Buy purchase confirmation dated December 20, 2023.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="wrong-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">Throughout 2025</div>
+                                        <div class="timeline-headline">Consumer repeatedly addressed as "James" instead of "Mark"</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-statement">● Company Statement</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Despite signing all correspondence as "Mark Joyner," consumer was repeatedly addressed as "James" over three months. iRobot acknowledged: "Your profile was listed under James Joyner and has now been updated to Mark Joyner."</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="wrong-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Policy Context: Data Governance -->
+                    <div class="policy-context-card">
+                        <div class="policy-context-header">
+                            <svg class="policy-context-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span class="policy-context-title">Context: If They Can't Get Your Name Right...</span>
+                        </div>
+                        <div class="policy-context-body">
+                            <p>Three documented data integrity failures in a single customer account:</p>
+                            <ul>
+                                <li><strong>Wrong purchase date</strong> — Off by 4 months</li>
+                                <li><strong>Wrong warranty date</strong> — Recorded the date the customer reminded them it existed</li>
+                                <li><strong>Wrong customer name</strong> — For three months of correspondence</li>
+                            </ul>
+                            <p>These are the <em>simple</em> records. This company also maintains:</p>
+                            <ul>
+                                <li>Detailed floor plans of your home</li>
+                                <li>Your daily activity patterns</li>
+                                <li>Your WiFi network credentials</li>
+                                <li>In some cases, camera footage from inside your home</li>
+                            </ul>
+                            <p><strong>If basic customer service records are this unreliable, what confidence should exist about the handling of sensitive home data — especially as it transfers to foreign ownership?</strong></p>
+                            <p class="policy-disclaimer">This is a question, not an accusation. But it is a question that regulators reviewing this acquisition should be asking.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Safety -->
+                <div class="section" id="section-6">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h2 class="section-title">Safety & Escalation Inconsistencies</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item critical">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 6, 2025</div>
+                                        <div class="timeline-headline">Another consumer reports melting charging terminals; receives immediate Safety team escalation</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">A separate BBB complaint described a customer experiencing melting charging terminals. That customer was immediately transferred to iRobot's Safety team, instructed to unplug, and upgraded to a different model.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="other-bbb-safety"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item warning">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">2024–2025</div>
+                                        <div class="timeline-headline">Consumer experiences charging contact issues twice; no Safety team transfer or warning</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Consumer experienced charging contact issues on two different units where contacts sank into the dock. Consumer was never informed this could be a fire hazard, told to unplug, or transferred to Safety team.</div>
+                                    </div>
+                                    <div class="info-box info-box-warning">
+                                        <div class="claim-label claim-label-question">● Open Question</div>
+                                        What criteria determine whether a charging contact issue receives Safety team escalation versus standard replacement?
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="own-safety"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Regulatory Escalation -->
+                <div class="section" id="section-7">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h2 class="section-title">Regulatory & Legal Escalation</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">November 29, 2025</div>
+                                        <div class="timeline-headline">BBB complaint filed (Case #24206293)</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">Consumer filed formal BBB complaint documenting approximately 14 replacement units across 3 models over 14 months.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="bbb-complaint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">January 22, 2026</div>
+                                        <div class="timeline-headline">iRobot Legal offers full refund of $1,248.99 with Release Agreement</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-statement">● Company Statement</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">After review by Operations, Engineering, and Legal teams, iRobot offered full refund: $999 (product) + $249.99 (warranty) = $1,248.99. Offer requires return of equipment and signed <span class="tooltip-term" data-tooltip="A legal agreement where a party gives up the right to pursue claims or take legal action.">Release Agreement</span>.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="refund-offer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-card">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">2025</div>
+                                        <div class="timeline-headline">iRobot files Chapter 11 bankruptcy (Case No. 25-12197)</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-fact">● Documented Fact</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">What Happened</div>
+                                        <div class="timeline-section-content">iRobot Corporation filed for <span class="tooltip-term" data-tooltip="A form of bankruptcy allowing a company to reorganize while continuing operations.">Chapter 11 bankruptcy</span> in U.S. Bankruptcy Court for the District of Delaware. Consumer filed <span class="tooltip-term" data-tooltip="A formal document asserting that a creditor is owed money by the debtor company.">Proof of Claim</span>.</div>
+                                    </div>
+                                    <button class="evidence-btn" data-evidence="bankruptcy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Evidence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 8: Current Status -->
+                <div class="section" id="section-8">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h2 class="section-title">Current Status & Open Questions</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item success">
+                            <div class="timeline-card expanded">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">As of January 2026</div>
+                                        <div class="timeline-headline">Points acknowledged or resolved</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-statement">● Company Statement</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Acknowledged by iRobot</div>
+                                        <div class="timeline-section-content">
+                                            <ul>
+                                                <li>Service gap: "Diagnostics should have preceded networking recommendations"</li>
+                                                <li>Name correction: Profile updated from "James" to "Mark"</li>
+                                                <li>Total replacement count confirmed (approximately 14 units)</li>
+                                                <li>Refund offer extended ($1,248.99)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item warning">
+                            <div class="timeline-card expanded">
+                                <div class="timeline-card-header">
+                                    <div>
+                                        <div class="timeline-date">As of January 2026</div>
+                                        <div class="timeline-headline">Open questions and unresolved matters</div>
+                                    </div>
+                                    <div class="timeline-expand"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+                                </div>
+                                <div class="timeline-card-body">
+                                    <div class="claim-label claim-label-question">● Open Questions</div>
+                                    <div class="timeline-section">
+                                        <div class="timeline-section-label">Questions for Further Inquiry</div>
+                                        <div class="timeline-section-content">
+                                            <ul>
+                                                <li>How many other users experienced similar connectivity failures after firmware 8.4.1?</li>
+                                                <li>What criteria determine Safety team escalation for charging contact issues?</li>
+                                                <li>What caused the data integrity issues (incorrect purchase date, warranty date, customer name)?</li>
+                                                <li>Has firmware 8.4.1/8.4.2 connectivity issue been fully resolved for affected users?</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Policy Context: Oversight -->
+                    <div class="policy-context-card">
+                        <div class="policy-context-header">
+                            <svg class="policy-context-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <span class="policy-context-title">Context: Why This Matters Beyond One Consumer</span>
+                        </div>
+                        <div class="policy-context-body">
+                            <p>This is one documented case. But the patterns documented here — if they exist systematically — have implications for:</p>
+                            <ul>
+                                <li><strong>CFIUS:</strong> Is a company with these data governance practices a suitable custodian of sensitive home data under foreign ownership?</li>
+                                <li><strong>FTC:</strong> If customers are systematically blamed for company-caused problems, is this an unfair or deceptive practice?</li>
+                                <li><strong>CPSC:</strong> If safety escalation protocols are applied inconsistently, are consumers being adequately protected?</li>
+                                <li><strong>Congress:</strong> Do the national security concerns raised about this acquisition extend to basic operational competence?</li>
+                            </ul>
+                            <p>One case proves nothing about systematic practices. But one thoroughly documented case can prompt the questions that lead to discovering whether these patterns are widespread.</p>
+                            <p class="policy-disclaimer">This site provides the documentation. The relevant authorities can determine what, if anything, it reveals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Context Panel -->
+            <aside class="context-panel">
+                <div class="context-card">
+                    <div class="context-card-header">Case Overview</div>
+                    <div class="context-card-body">
+                        <div class="stats-grid">
+                            <div class="stat-box"><div class="stat-number error">~14</div><div class="stat-label">Replacement Units</div></div>
+                            <div class="stat-box"><div class="stat-number">3</div><div class="stat-label">Product Models</div></div>
+                            <div class="stat-box"><div class="stat-number">14+</div><div class="stat-label">Months Duration</div></div>
+                            <div class="stat-box"><div class="stat-number">$1,249</div><div class="stat-label">Total Investment</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="context-card">
+                    <div class="context-card-header">Key Facts</div>
+                    <div class="context-card-body">
+                        <div class="key-fact"><span class="key-fact-label">Original Purchase</span><span class="key-fact-value">Dec 20, 2023</span></div>
+                        <div class="key-fact"><span class="key-fact-label">Extended Warranty</span><span class="key-fact-value">Nov 20, 2024</span></div>
+                        <div class="key-fact"><span class="key-fact-label">Firmware Issue Start</span><span class="key-fact-value">Sep 1, 2025</span></div>
+                        <div class="key-fact"><span class="key-fact-label">BBB Complaint</span><span class="key-fact-value">#24206293</span></div>
+                        <div class="key-fact"><span class="key-fact-label">Factory Resets</span><span class="key-fact-value highlight">15+</span></div>
+                    </div>
+                </div>
+                <div class="context-card">
+                    <div class="context-card-header">Claim Type Legend</div>
+                    <div class="context-card-body" style="font-size: 0.85rem;">
+                        <div style="margin-bottom: 0.75rem;">
+                            <span class="claim-label claim-label-fact">● Documented Fact</span>
+                            <div style="color: var(--color-text-secondary); font-size: 0.8rem;">Verifiable through primary source documentation</div>
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <span class="claim-label claim-label-statement">● Company Statement</span>
+                            <div style="color: var(--color-text-secondary); font-size: 0.8rem;">Direct statement from iRobot in correspondence</div>
+                        </div>
+                        <div>
+                            <span class="claim-label claim-label-question">● Open Question</span>
+                            <div style="color: var(--color-text-secondary); font-size: 0.8rem;">Unresolved matter requiring further information</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="context-card">
+                    <div class="context-card-header">Product Models</div>
+                    <div class="context-card-body">
+                        <div style="margin-bottom: 1rem;"><span class="tag tag-neutral">Original</span><strong style="font-size: 0.875rem;">Roomba Combo j9+</strong><div style="font-size: 0.8rem; color: var(--color-text-secondary);">~10 units, mopping streak defect</div></div>
+                        <div style="margin-bottom: 1rem;"><span class="tag tag-warning">Upgrade 1</span><strong style="font-size: 0.875rem;">Roomba Combo 10 Max</strong><div style="font-size: 0.8rem; color: var(--color-text-secondary);">~4 units, streak + charging issues</div></div>
+                        <div><span class="tag tag-error">Upgrade 2</span><strong style="font-size: 0.875rem;">Roomba 505 Combo</strong><div style="font-size: 0.8rem; color: var(--color-text-secondary);">2 units, WiFi connectivity failure</div></div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Documents Page -->
+    <div class="page-section" id="page-documents">
+        <div class="about-content">
+            <h2>Full Source Documents</h2>
+            <div class="info-box info-box-accent">
+                <p><strong>Complete source materials are provided for transparency and independent review.</strong></p>
+                <a href="https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing" target="_blank" class="evidence-source-link" style="margin-top: 1rem; display: inline-flex;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    <div><div class="evidence-source-link-title">Access Full Source Documents</div><div class="evidence-source-link-desc">Google Drive — Complete case documentation</div></div>
+                </a>
+            </div>
+            <h2>Available Documentation</h2>
+            <ul>
+                <li><strong>Best Buy Purchase Confirmation</strong> — December 20, 2023</li>
+                <li><strong>Extended Warranty Receipt</strong> — Transaction ID: 320243350070422825</li>
+                <li><strong>Video Evidence</strong> — WiFi connectivity failure demonstration</li>
+                <li><strong>BBB Complaint #24206293</strong> — Full complaint and response history</li>
+                <li><strong>Email Correspondence</strong> — September 2025 – January 2026</li>
+                <li><strong>Proof of Claim</strong> — Chapter 11 Case No. 25-12197</li>
+                <li><strong>Preserved Screenshot</strong> — iRobot firmware patch notes page</li>
+            </ul>
+            <div class="info-box info-box-neutral" style="margin-top: 1.5rem;">
+                <strong>Note on Replacement Documentation:</strong> Due to the complexity and duration of this case (14+ months, ~14 units), comprehensive serial number tracking was not maintained for all replacements. The replacement count is documented through: (1) iRobot's non-refutation of the count in BBB proceedings, and (2) internal support communications with iRobot. The BBB complaint and response serve as the primary public record.
+            </div>
+        </div>
+    </div>
+
+    <!-- Data & Privacy Page -->
+    <div class="page-section" id="page-data-context">
+        <div class="about-content">
+            <h2>Consumer Robotics Data Scope</h2>
+            <p>Modern consumer robots are not simply appliances — they are networked data collection devices that operate continuously inside private homes. Understanding what these devices collect, and what happens when that data is mismanaged, is essential context for evaluating this case.</p>
+            
+            <h2>What These Devices Collect</h2>
+            <p>Advanced robotic vacuums like those manufactured by iRobot collect:</p>
+            <ul>
+                <li><strong>Complete home floor plans</strong> — Room dimensions, furniture placement, entry/exit points</li>
+                <li><strong>Occupancy patterns</strong> — When residents are home, daily routines, sleep schedules (inferred from cleaning times)</li>
+                <li><strong>Network credentials</strong> — WiFi passwords, network topology, connected device information</li>
+                <li><strong>Visual data</strong> — Some models include cameras for navigation and "home monitoring" features</li>
+                <li><strong>Account information</strong> — Names, email addresses, billing details, purchase history</li>
+                <li><strong>Continuous telemetry</strong> — Error logs, usage patterns, firmware versions, real-time status</li>
+            </ul>
+            
+            <h2>Why Data Integrity Failures Matter</h2>
+            <p>This case documents multiple data integrity failures: incorrect purchase dates, incorrect warranty dates, incorrect customer names. These are not minor clerical errors. Consider what they reveal:</p>
+            <ul>
+                <li><strong>If basic customer records are unreliable</strong>, what confidence exists that more sensitive data (home maps, usage patterns, network information) is being handled accurately?</li>
+                <li><strong>If records can be wrong for 14+ months</strong> without detection or correction, what other errors might exist across millions of customer accounts?</li>
+                <li><strong>If a company cannot reliably track who purchased what and when</strong>, can it reliably track what data it holds, where that data flows, and who has access?</li>
+            </ul>
+            
+            <h2>The Foreign Acquisition Context</h2>
+            <p>iRobot is currently subject to acquisition by Shenzhen Picea Robotics, a Chinese company. This transaction may be subject to <span class="tooltip-term" data-tooltip="Committee on Foreign Investment in the United States — reviews foreign acquisitions for national security implications.">CFIUS</span> review and has drawn scrutiny from members of Congress concerned about data security implications.</p>
+            <p>The data governance failures documented in this case — inability to maintain accurate customer records, inconsistent safety protocols, firmware updates that break functionality — are precisely the types of operational practices that raise questions during national security reviews of foreign acquisitions.</p>
+            
+            <div class="non-claims-box">
+                <div class="non-claims-box-title">⚠ What This Section Does and Does Not Claim</div>
+                <div class="non-claims-box-content">
+                    <p>This section <strong>does not allege</strong> that iRobot has transferred data improperly, violated privacy laws, or poses a national security threat.</p>
+                    <p>This section <strong>does document</strong> that a company seeking to transfer control of millions of Americans' home data to foreign ownership has demonstrated, in at least one case, an inability to maintain accurate basic records. Readers and oversight bodies can evaluate the implications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Regulatory Context Page -->
+    <div class="page-section" id="page-regulatory">
+        <div class="about-content">
+            <h2>Applicable Regulatory Frameworks</h2>
+            <p>This case implicates multiple regulatory frameworks designed to protect consumers and national security. This section outlines each framework and its specific relevance to the documented facts.</p>
+            
+            <h2>Magnuson-Moss Warranty Act (15 U.S.C. § 2301)</h2>
+            <p>The federal warranty law establishes that when a warrantor fails to remedy a defect after a reasonable number of attempts, the consumer may be entitled to a refund. Key questions this case raises:</p>
+            <ul>
+                <li>Does ~14 replacement units over 14 months constitute a "reasonable number of attempts"?</li>
+                <li>When a company acknowledges a "service gap" where diagnostics should have preceded recommendations, does this affect warranty obligations?</li>
+                <li>When firmware updates cause product failures, is this a warranty issue or something else?</li>
+            </ul>
+            
+            <h2>FTC Act — Unfair or Deceptive Practices (15 U.S.C. § 45)</h2>
+            <p>The FTC has authority over practices that are unfair or deceptive to consumers. Documented facts relevant to FTC review:</p>
+            <ul>
+                <li><strong>Network attribution without diagnostics:</strong> Recommending consumers purchase expensive equipment ($2,700+ mesh systems) while internal diagnostics showing company-side errors went unchecked</li>
+                <li><strong>Data integrity failures:</strong> Maintaining incorrect customer records (wrong names, wrong dates) that could affect warranty coverage determinations</li>
+                <li><strong>Inconsistent safety protocols:</strong> Different responses to similar charging contact issues across customers, with some receiving Safety team escalation and others receiving none</li>
+            </ul>
+            
+            <h2>Consumer Product Safety Commission</h2>
+            <p>The CPSC investigates product defects that present safety risks. This case documents:</p>
+            <ul>
+                <li>Charging contact issues on multiple units where contacts "sank into" the dock</li>
+                <li>A separate BBB complaint describing the same issue as "melting" — that customer received immediate Safety team transfer</li>
+                <li>This consumer experienced the issue twice and was never warned of potential fire hazard or transferred to Safety team</li>
+            </ul>
+            <p>The inconsistency in safety response protocols — where similar symptoms receive dramatically different treatment — raises questions about whether safety escalation criteria are being applied consistently across all affected consumers.</p>
+            
+            <h2>CFIUS and National Security Review</h2>
+            <p>The Committee on Foreign Investment in the United States reviews foreign acquisitions for national security implications. iRobot's pending acquisition by Shenzhen Picea Robotics has already drawn Congressional scrutiny.</p>
+            <p><strong>Why this consumer case is relevant to CFIUS review:</strong></p>
+            <ul>
+                <li><strong>Data governance capability:</strong> A company that cannot maintain accurate basic customer records raises questions about its ability to safeguard sensitive data under foreign ownership</li>
+                <li><strong>Software control:</strong> Firmware updates pushed without user consent that break device functionality demonstrate the level of control the company (and future owners) maintain over devices inside American homes</li>
+                <li><strong>Operational practices:</strong> The documented patterns — blaming customers before checking internal systems, inconsistent safety protocols, data integrity failures — suggest governance weaknesses that could be exploited or exacerbated under foreign control</li>
+            </ul>
+            
+            <h2>Chapter 11 Bankruptcy</h2>
+            <p>iRobot's bankruptcy filing creates additional considerations:</p>
+            <ul>
+                <li>Consumer warranty claims become creditor claims subject to bankruptcy proceedings</li>
+                <li>The U.S. Trustee Program oversees debtor conduct during bankruptcy</li>
+                <li>Release agreements offered during bankruptcy may have different implications than those offered by solvent companies</li>
+            </ul>
+            
+            <div class="non-claims-box">
+                <div class="non-claims-box-title">⚠ Legal Disclaimer</div>
+                <div class="non-claims-box-content">
+                    <p>This section provides regulatory context, not legal conclusions. This site does not assert that iRobot has violated any of these laws or regulations.</p>
+                    <p>What this site <strong>does</strong> provide: documented facts that are relevant to the frameworks designed to protect consumers and national security. Whether those facts warrant regulatory action is a determination for the appropriate authorities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="page-section" id="page-about">
+        <div class="about-content">
+            <h2>Why This Site Exists</h2>
+            <p>This documentation exists because a 14-month warranty dispute revealed patterns that extend beyond one consumer's experience. When a company:</p>
+            <ul>
+                <li>Issues ~14 replacement units without resolving the underlying issue</li>
+                <li>Blames customers for problems caused by its own software</li>
+                <li>Maintains incorrect records about basic facts (names, dates, warranty status)</li>
+                <li>Applies safety protocols inconsistently across customers</li>
+                <li>Offers refunds only after BBB complaints and bankruptcy filings</li>
+            </ul>
+            <p>...these are not isolated customer service failures. They are governance failures that may affect many consumers and that become particularly relevant when that company is transferring control to foreign ownership.</p>
+            
+            <h2>Who This Site Is For</h2>
+            <ul>
+                <li><strong>Regulators</strong> — FTC, CPSC, State AGs, CFIUS, U.S. Trustee Program</li>
+                <li><strong>Congressional staff</strong> — Particularly those reviewing the Shenzhen Picea acquisition</li>
+                <li><strong>Journalists</strong> — Investigating consumer protection or the iRobot acquisition</li>
+                <li><strong>Legal professionals</strong> — Evaluating warranty practices or class action potential</li>
+                <li><strong>Other affected consumers</strong> — Who may recognize similar patterns in their own experiences</li>
+            </ul>
+            
+            <h2>Documentation Standards</h2>
+            <ul>
+                <li><strong>Primary Sources:</strong> All factual claims are based on direct documentation — receipts, emails, BBB filings, official company statements</li>
+                <li><strong>Claim Labeling:</strong> Every claim is labeled as Documented Fact, Company Statement, or Open Question</li>
+                <li><strong>Evidence Access:</strong> Source materials are available via Google Drive for independent verification</li>
+                <li><strong>No Intent Attribution:</strong> This site documents what happened, not why it happened</li>
+            </ul>
+            
+            <div class="non-claims-box">
+                <div class="non-claims-box-title">⚠ What This Site Does NOT Do</div>
+                <div class="non-claims-box-content">
+                    <p>This site does not:</p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Allege that iRobot violated any specific law</li>
+                        <li>Claim that data was transferred improperly</li>
+                        <li>Assert national security violations</li>
+                        <li>Attribute intent or motive to any party</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This site <strong>does</strong> present documented facts and identify their relevance to consumer protection and oversight frameworks. Conclusions are for readers, regulators, and courts to draw.</p>
+                </div>
+            </div>
+            
+            <h2>Contact</h2>
+            <p>For inquiries from journalists, regulators, legal professionals, or other affected consumers:</p>
+            <div class="info-box info-box-accent" style="margin-top: 1rem;">
+                <strong>Email:</strong> <a href="mailto:markjoynerirobot@gmail.com" style="color: var(--color-accent);">markjoynerirobot@gmail.com</a>
+                <p style="margin-top: 0.5rem; margin-bottom: 0; font-size: 0.85rem;">This email is monitored and responses will be provided to legitimate inquiries.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-disclaimer"><strong>This site documents facts. It does not allege violations of law.</strong> What it does provide: a thoroughly documented consumer case that raises questions about warranty practices, data governance, safety protocols, and operational competence — questions that become particularly relevant as this company seeks to transfer control of millions of Americans' home data to foreign ownership.</div>
+            <p class="footer-text">
+                Consumer Case Documentation • Evidence-Based Record<br>
+                <a href="mailto:markjoynerirobot@gmail.com" style="color: var(--color-accent);">markjoynerirobot@gmail.com</a>
+            </p>
+            <p class="footer-version">Version 2.0 • Last Updated: January 28, 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Evidence data
+        const evidenceData = {
+            'purchase': { title: 'Purchase Documentation', subtitle: 'December 20, 2023 — Best Buy', summary: 'The original purchase receipt from Best Buy documents the transaction date as December 20, 2023. iRobot later stated the purchase date was "April 2024," a four-month discrepancy.', extracts: [{ label: 'Best Buy Order Confirmation', text: 'Order Date: December 20, 2023\nProduct: iRobot Roomba Combo j9+\nPrice: $999.00' }], hasFullSource: true, sourceLabel: 'Best Buy Receipt (PDF)', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'warranty': { title: 'Extended Warranty Documentation', subtitle: 'November 20, 2024', summary: 'The extended warranty was purchased on November 20, 2024 (Transaction ID: 320243350070422825). iRobot recorded this incorrectly as "October 17, 2025."', extracts: [{ label: 'Warranty Transaction', text: 'Transaction ID: 320243350070422825\nPurchase Date: November 20, 2024\nAmount: $249.99' }], hasFullSource: true, sourceLabel: 'Warranty Receipt', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'j9-replacements': { title: 'J9+ Replacement History', subtitle: '2024 — Approximately 10 Units', summary: 'Multiple j9+ replacement units were issued, each exhibiting the same mopping streak defect. Due to the complexity and duration of this case, the primary available documentation is the BBB complaint where iRobot did not refute the replacement count, and internal support communications with iRobot.', extracts: [{ label: 'BBB Documentation Note', text: 'iRobot acknowledged the replacement history in their BBB response (December 11, 2025) and did not dispute the approximate count of ~14 total units across all models.' }], hasFullSource: true, sourceLabel: 'BBB Complaint & Response', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            '10max-replacements': { title: 'Combo 10 Max Replacement History', subtitle: '2024-2025 — Approximately 4 Units', summary: 'After j9+ failures, consumer was upgraded to Combo 10 Max which exhibited mopping streaks plus charging contact problems. Due to case complexity, documentation consists of BBB filings (where iRobot did not refute counts) and internal iRobot support communications.', extracts: [{ label: 'Documentation Note', text: 'The replacement count is supported by iRobot\'s non-refutation in BBB proceedings and internal support ticket history.' }], hasFullSource: true, sourceLabel: 'BBB Complaint & Response', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'firmware-841': { title: 'Firmware 8.4.1 & Patch Notes', subtitle: 'August 19, 2025', summary: 'Firmware 8.4.2 patch notes state: "Fixed a bug where Wi-Fi issues caused some robots to get stuck in software update cycles." This acknowledges changes were made to how robots interact with WiFi networks — implying network connectivity issues existed that required modification. Note: This does not prove the issue was resolved, only that iRobot acknowledged making changes to WiFi-related functionality.', extracts: [{ label: 'Firmware 8.4.2 Patch Notes (Official)', text: '"Fixed a bug where Wi-Fi issues caused some robots to get stuck in software update cycles."' }], hasFullSource: true, sourceLabel: 'iRobot Official Patch Notes', sourceLink: 'https://homesupport.irobot.com/s/article/Roomba-Robot-Vacuums-Software-Update-Release-Notes', hasPreservedImage: true },
+            'connectivity-failure': { title: 'Connectivity Failure Documentation', subtitle: 'September 1, 2025 — Present', summary: 'Video documentation demonstrates the failure pattern: robot maintains physical WiFi connection (visible on router admin panel) but fails to connect to iRobot cloud services and mobile app.', extracts: [{ label: 'Diagnostic Summary', text: 'Pre-8.4.1: 120+ days flawless operation\nPost-8.4.1: 0 days stable operation\nFactory Resets Required: 15+' }], hasFullSource: true, sourceLabel: 'Video Demonstration', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing', isVideo: true },
+            'replacement-failure': { title: 'Replacement Unit Same Failure', subtitle: 'November 19, 2025', summary: 'Hardware replacement issued November 19, 2025 exhibited identical connectivity failure pattern, ruling out hardware defect. Documented in BBB correspondence and support communications.', hasFullSource: true, sourceLabel: 'BBB Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'network-blame': { title: 'Network Attribution Without Diagnostics', subtitle: 'November 25, 2025', summary: 'Support agent recommended network upgrades without checking iRobot diagnostics. Consumer had $2,700 enterprise mesh system.', hasFullSource: true, sourceLabel: 'Email Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'account-error': { title: 'Account-Associated Error Discovery', subtitle: 'November 26, 2025', summary: 'One day after blaming network, same agent found "account-associated error" on iRobot\'s end. iRobot acknowledged "diagnostics should have preceded networking recommendations."', hasFullSource: true, sourceLabel: 'BBB Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'wrong-date': { title: 'Incorrect Purchase Date', subtitle: 'December 5, 2025', summary: 'iRobot stated "April 2024" purchase date. Actual date: December 20, 2023 per Best Buy receipt.', extracts: [{ label: 'iRobot BBB Response', text: '"Purchase Date: April 2024 (not late 2023 as stated)"' }, { label: 'Actual Date', text: 'Best Buy Order Date: December 20, 2023' }], hasFullSource: true, sourceLabel: 'BBB + Receipt', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'wrong-name': { title: 'Incorrect Customer Name', subtitle: 'Throughout 2025', summary: 'Consumer addressed as "James" instead of "Mark" for three months. iRobot acknowledged profile was listed under wrong name.', hasFullSource: true, sourceLabel: 'BBB Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'other-bbb-safety': { title: 'Other Consumer Safety Escalation', subtitle: 'November 6, 2025', summary: 'Separate BBB complaint described melting charging terminals. That customer was immediately transferred to Safety team and upgraded.', hasFullSource: true, sourceLabel: 'BBB Complaint Sample', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'own-safety': { title: 'Consumer Safety Experience', subtitle: '2024-2025', summary: 'Consumer experienced charging contact issues twice but was never warned of fire hazard or transferred to Safety team.', hasFullSource: true, sourceLabel: 'BBB Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'bbb-complaint': { title: 'BBB Complaint Filed', subtitle: 'November 29, 2025 — Case #24206293', summary: 'Formal complaint documenting approximately 14 replacement units across 3 models over 14 months.', hasFullSource: true, sourceLabel: 'BBB Complaint #24206293', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'refund-offer': { title: 'Refund Offer', subtitle: 'January 22, 2026', summary: 'iRobot offered full refund of $1,248.99 contingent on equipment return and signed Release Agreement.', extracts: [{ label: 'iRobot Offer', text: 'Refund: $999.00 (product) + $249.99 (warranty)\nTotal: $1,248.99\nRequires: Equipment return + Release Agreement' }], hasFullSource: true, sourceLabel: 'BBB Correspondence', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' },
+            'bankruptcy': { title: 'Bankruptcy Filing', subtitle: 'Case No. 25-12197', summary: 'iRobot filed Chapter 11 bankruptcy. Consumer filed Proof of Claim.', hasFullSource: true, sourceLabel: 'Proof of Claim', sourceLink: 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing' }
+        };
+
+        const DRIVE_LINK = 'https://drive.google.com/drive/folders/1kmOslnX3WoALWLhN0KSX8qJGsimF8M2d?usp=sharing';
+
+        // Evidence panel
+        const panel = document.getElementById('evidencePanel');
+        const overlay = document.getElementById('evidencePanelOverlay');
+        const closeBtn = document.getElementById('evidencePanelClose');
+        const panelTitle = document.getElementById('evidencePanelTitle');
+        const panelSubtitle = document.getElementById('evidencePanelSubtitle');
+        const panelBody = document.getElementById('evidencePanelBody');
+
+        function openPanel(key) {
+            const d = evidenceData[key];
+            if (!d) return;
+            panelTitle.textContent = d.title;
+            panelSubtitle.textContent = d.subtitle || '';
+            let html = '<div class="evidence-section"><div class="evidence-section-title">Evidence Summary</div><div class="evidence-summary">' + d.summary + '</div></div>';
+            if (d.extracts && d.extracts.length) {
+                html += '<div class="evidence-section"><div class="evidence-section-title">Text-Based Evidence Extracts</div>';
+                d.extracts.forEach(e => { html += '<div class="evidence-extract"><div class="evidence-extract-label">' + e.label + '</div><div class="evidence-extract-text">' + e.text.replace(/\n/g, '<br>') + '</div></div>'; });
+                html += '</div>';
+            }
+            if (d.isPending) {
+                html += '<div class="evidence-section"><div class="evidence-section-title">Documentation Status</div><div class="evidence-preparation"><div class="evidence-preparation-title">Evidence In Preparation</div><div class="evidence-preparation-text">' + d.pendingText + '</div></div></div>';
+            }
+            if (d.hasFullSource) {
+                const link = d.sourceLink || DRIVE_LINK;
+                let iconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
+                let linkDesc = 'Google Drive';
+                
+                if (d.isVideo) {
+                    iconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+                    linkDesc = 'Video in Google Drive';
+                }
+                
+                html += '<div class="evidence-section"><div class="evidence-section-title">Full Source Documents (External)</div><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:0.75rem;">Complete source materials provided for independent review.</p>';
+                
+                // Special handling for firmware - add link to official iRobot page
+                if (d.hasPreservedImage) {
+                    html += '<a href="https://homesupport.irobot.com/s/article/Roomba-Robot-Vacuums-Software-Update-Release-Notes" target="_blank" class="evidence-source-link" style="margin-bottom:0.75rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><div><div class="evidence-source-link-title">iRobot Official Patch Notes</div><div class="evidence-source-link-desc">Live page on homesupport.irobot.com</div></div></a>';
+                    html += '<a href="' + link + '" target="_blank" class="evidence-source-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><div><div class="evidence-source-link-title">Preserved Screenshot</div><div class="evidence-source-link-desc">Archived copy in Google Drive</div></div></a>';
+                } else {
+                    html += '<a href="' + link + '" target="_blank" class="evidence-source-link">' + iconSvg + '<div><div class="evidence-source-link-title">' + d.sourceLabel + '</div><div class="evidence-source-link-desc">' + linkDesc + '</div></div></a>';
+                }
+                html += '</div>';
+            }
+            panelBody.innerHTML = html;
+            panel.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            panel.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.evidence-btn').forEach(btn => {
+            btn.addEventListener('click', e => { e.stopPropagation(); openPanel(btn.dataset.evidence); });
+        });
+        closeBtn.addEventListener('click', closePanel);
+        overlay.addEventListener('click', closePanel);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+        // Timeline expansion
+        document.querySelectorAll('.timeline-card-header').forEach(h => {
+            h.addEventListener('click', () => { h.closest('.timeline-card').classList.toggle('expanded'); });
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(l => {
+            l.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
+                l.classList.add('active');
+                document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + l.dataset.page).classList.add('active');
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Expand first card in each section
+        document.querySelectorAll('.section').forEach(s => {
+            const c = s.querySelector('.timeline-card');
+            if (c && !c.classList.contains('expanded')) c.classList.add('expanded');
+        });
+    </script>
+</body>
+</html>
